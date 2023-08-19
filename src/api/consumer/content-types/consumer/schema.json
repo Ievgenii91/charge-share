@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "consumers",
+  "info": {
+    "singularName": "consumer",
+    "pluralName": "consumers",
+    "displayName": "Consumer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

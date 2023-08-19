@@ -1,0 +1,33 @@
+{
+  "name": "charge-share",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/plugin-i18n": "4.12.5",
+    "@strapi/plugin-users-permissions": "4.12.5",
+    "@strapi/provider-email-amazon-ses": "^4.12.5",
+    "@strapi/provider-upload-aws-s3": "^4.12.5",
+    "@strapi/strapi": "4.12.5",
+    "pg": "8.8.0",
+    "strapi-plugin-transformer": "^3.1.0"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "d3247c96-26a3-4419-8358-054645a1256d"
+  },
+  "engines": {
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

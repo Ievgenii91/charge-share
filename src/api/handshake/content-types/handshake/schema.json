@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "handshakes",
+  "info": {
+    "singularName": "handshake",
+    "pluralName": "handshakes",
+    "displayName": "Handshake"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "consumer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::consumer.consumer"
+    },
+    "provider": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::provider.provider"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "isStart": {
+      "type": "boolean"
+    }
+  }
+}
