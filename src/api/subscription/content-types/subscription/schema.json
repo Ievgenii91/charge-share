@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscriptions",
+  "info": {
+    "singularName": "subscription",
+    "pluralName": "subscriptions",
+    "displayName": "Subscription",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "amount": {
+      "type": "integer"
+    },
+    "invoiceId": {
+      "type": "uid"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "provider": {
+      "type": "enumeration",
+      "enum": [
+        "monobank",
+        "liqpay",
+        "fondy"
+      ]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "created",
+        "processing",
+        "success"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "monthly",
+        "annual",
+        "full",
+        "promo"
+      ]
+    }
+  }
+}

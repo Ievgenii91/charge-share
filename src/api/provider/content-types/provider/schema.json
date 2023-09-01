@@ -4,7 +4,8 @@
   "info": {
     "singularName": "provider",
     "pluralName": "providers",
-    "displayName": "Provider"
+    "displayName": "Provider",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -35,11 +36,12 @@
       "min": 0
     },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "description": {
       "type": "string"
@@ -52,6 +54,32 @@
     },
     "chargingHours": {
       "type": "integer"
+    },
+    "geoProviderAddress": {
+      "type": "json"
+    },
+    "isInUseBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::consumer.consumer"
+    },
+    "lastChargeStartDate": {
+      "type": "datetime"
+    },
+    "lastChargeEndDate": {
+      "type": "datetime"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "providers"
+    },
+    "latitude": {
+      "type": "float"
+    },
+    "longitude": {
+      "type": "float"
     }
   }
 }

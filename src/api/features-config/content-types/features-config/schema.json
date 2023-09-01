@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "features_configs",
+  "info": {
+    "singularName": "features-config",
+    "pluralName": "features-configs",
+    "displayName": "FeaturesConfig"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "arePaymentsEnabled": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "monthlySubscriptionCost": {
+      "type": "integer",
+      "default": 99,
+      "required": true
+    },
+    "annualSubscriptionCost": {
+      "type": "integer",
+      "default": 999,
+      "required": true
+    },
+    "paymentsProvider": {
+      "type": "enumeration",
+      "enum": [
+        "monobank",
+        "liqpay",
+        "fondy"
+      ],
+      "default": "monobank",
+      "required": true
+    }
+  }
+}
