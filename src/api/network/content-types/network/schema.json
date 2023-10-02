@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "networks",
+  "info": {
+    "singularName": "network",
+    "pluralName": "networks",
+    "displayName": "Network",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "actionName": {
+      "type": "string"
+    },
+    "actionUrl": {
+      "type": "string"
+    }
+  }
+}

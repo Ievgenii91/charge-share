@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reviews",
+  "info": {
+    "singularName": "review",
+    "pluralName": "reviews",
+    "displayName": "Review",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "comment": {
+      "type": "string"
+    },
+    "consumer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::consumer.consumer"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "finished": {
+      "type": "datetime"
+    },
+    "problemDescription": {
+      "type": "string"
+    },
+    "waiting": {
+      "type": "boolean"
+    },
+    "volts": {
+      "type": "integer"
+    }
+  }
+}

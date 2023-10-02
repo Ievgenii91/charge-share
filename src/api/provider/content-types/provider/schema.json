@@ -4,7 +4,7 @@
   "info": {
     "singularName": "provider",
     "pluralName": "providers",
-    "displayName": "Provider",
+    "displayName": "Location",
     "description": ""
   },
   "options": {
@@ -20,54 +20,17 @@
     "address": {
       "type": "string"
     },
-    "isInUse": {
-      "type": "boolean",
-      "default": false,
-      "required": false
-    },
-    "isIdle": {
-      "type": "boolean",
-      "default": false
-    },
     "rating": {
       "type": "integer",
       "default": 5,
       "max": 5,
       "min": 0
     },
-    "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "description": {
       "type": "string"
     },
-    "price": {
-      "type": "integer"
-    },
-    "power": {
-      "type": "integer"
-    },
-    "chargingHours": {
-      "type": "integer"
-    },
     "geoProviderAddress": {
       "type": "json"
-    },
-    "isInUseBy": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::consumer.consumer"
-    },
-    "lastChargeStartDate": {
-      "type": "datetime"
-    },
-    "lastChargeEndDate": {
-      "type": "datetime"
     },
     "owner": {
       "type": "relation",
@@ -80,6 +43,64 @@
     },
     "longitude": {
       "type": "float"
+    },
+    "score": {
+      "type": "decimal"
+    },
+    "validOutlets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::connector.connector"
+    },
+    "costDescription": {
+      "type": "string"
+    },
+    "cost": {
+      "type": "boolean"
+    },
+    "access": {
+      "type": "integer"
+    },
+    "url": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "iconType": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "qrEnabled": {
+      "type": "boolean"
+    },
+    "hours": {
+      "type": "string"
+    },
+    "open247": {
+      "type": "boolean",
+      "default": false
+    },
+    "comingSoon": {
+      "type": "boolean"
+    },
+    "underRepair": {
+      "type": "boolean"
+    },
+    "openingDate": {
+      "type": "date"
+    },
+    "photos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::photo.photo"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review"
     }
   }
 }

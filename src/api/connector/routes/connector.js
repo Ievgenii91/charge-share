@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * handshake router
+ * connector router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::handshake.handshake');
+module.exports = createCoreRouter('api::connector.connector');

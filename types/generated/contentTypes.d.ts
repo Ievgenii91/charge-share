@@ -683,6 +683,39 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiConnectorConnector extends Schema.CollectionType {
+  collectionName: 'connectors';
+  info: {
+    singularName: 'connector';
+    pluralName: 'connectors';
+    displayName: 'Connector';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    description: Attribute.String;
+    type: Attribute.Integer;
+    imageUrl: Attribute.String;
+    power: Attribute.Integer;
+    EU: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::connector.connector',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::connector.connector',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiConsumerConsumer extends Schema.CollectionType {
   collectionName: 'consumers';
   info: {
@@ -715,6 +748,11 @@ export interface ApiConsumerConsumer extends Schema.CollectionType {
         min: 0;
         max: 5;
       }>;
+    phone: Attribute.String;
+    about: Attribute.String;
+    notifyNearbyRadius: Attribute.Integer;
+    notifyNearby: Attribute.Integer;
+    vehicleDescription: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -773,40 +811,130 @@ export interface ApiFeaturesConfigFeaturesConfig extends Schema.SingleType {
   };
 }
 
-export interface ApiHandshakeHandshake extends Schema.CollectionType {
-  collectionName: 'handshakes';
+export interface ApiNetworkNetwork extends Schema.CollectionType {
+  collectionName: 'networks';
   info: {
-    singularName: 'handshake';
-    pluralName: 'handshakes';
-    displayName: 'Handshake';
+    singularName: 'network';
+    pluralName: 'networks';
+    displayName: 'Network';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    consumer: Attribute.Relation<
-      'api::handshake.handshake',
-      'oneToOne',
-      'api::consumer.consumer'
-    >;
-    provider: Attribute.Relation<
-      'api::handshake.handshake',
-      'oneToOne',
-      'api::provider.provider'
-    >;
-    date: Attribute.DateTime;
-    isStart: Attribute.Boolean;
+    name: Attribute.String;
+    description: Attribute.String;
+    url: Attribute.String;
+    image: Attribute.String;
+    phone: Attribute.String;
+    actionName: Attribute.String;
+    actionUrl: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::handshake.handshake',
+      'api::network.network',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::handshake.handshake',
+      'api::network.network',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOutletOutlet extends Schema.CollectionType {
+  collectionName: 'outlets';
+  info: {
+    singularName: 'outlet';
+    pluralName: 'outlets';
+    displayName: 'Outlet';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    available: Attribute.Boolean;
+    power: Attribute.Decimal;
+    connector: Attribute.Relation<
+      'api::outlet.outlet',
+      'oneToOne',
+      'api::connector.connector'
+    >;
+    statusChangedAt: Attribute.DateTime;
+    status: Attribute.Enumeration<
+      [
+        'AVAILABLE',
+        'BLOCKED',
+        'CHARGING',
+        'CONNECTED',
+        'OUTOFORDER',
+        'UNDER_REPAIR',
+        'OFFLINE',
+        'PLANNED',
+        'REMOVED',
+        'RESERVED',
+        'UNKNOWN'
+      ]
+    >;
+    station: Attribute.Relation<
+      'api::outlet.outlet',
+      'oneToOne',
+      'api::station.station'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::outlet.outlet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::outlet.outlet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPhotoPhoto extends Schema.CollectionType {
+  collectionName: 'photos';
+  info: {
+    singularName: 'photo';
+    pluralName: 'photos';
+    displayName: 'photo';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::photo.photo',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    url: Attribute.String & Attribute.Required;
+    thumbnail: Attribute.String;
+    caption: Attribute.String;
+    thumbnail2x: Attribute.String;
+    order: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::photo.photo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::photo.photo',
       'oneToOne',
       'admin::user'
     > &
@@ -819,7 +947,7 @@ export interface ApiProviderProvider extends Schema.CollectionType {
   info: {
     singularName: 'provider';
     pluralName: 'providers';
-    displayName: 'Provider';
+    displayName: 'Location';
     description: '';
   };
   options: {
@@ -828,27 +956,14 @@ export interface ApiProviderProvider extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     address: Attribute.String;
-    isInUse: Attribute.Boolean & Attribute.DefaultTo<false>;
-    isIdle: Attribute.Boolean & Attribute.DefaultTo<false>;
     rating: Attribute.Integer &
       Attribute.SetMinMax<{
         min: 0;
         max: 5;
       }> &
       Attribute.DefaultTo<5>;
-    images: Attribute.Media;
     description: Attribute.String;
-    price: Attribute.Integer;
-    power: Attribute.Integer;
-    chargingHours: Attribute.Integer;
     geoProviderAddress: Attribute.JSON;
-    isInUseBy: Attribute.Relation<
-      'api::provider.provider',
-      'oneToOne',
-      'api::consumer.consumer'
-    >;
-    lastChargeStartDate: Attribute.DateTime;
-    lastChargeEndDate: Attribute.DateTime;
     owner: Attribute.Relation<
       'api::provider.provider',
       'manyToOne',
@@ -856,6 +971,35 @@ export interface ApiProviderProvider extends Schema.CollectionType {
     >;
     latitude: Attribute.Float;
     longitude: Attribute.Float;
+    score: Attribute.Decimal;
+    validOutlets: Attribute.Relation<
+      'api::provider.provider',
+      'oneToMany',
+      'api::connector.connector'
+    >;
+    costDescription: Attribute.String;
+    cost: Attribute.Boolean;
+    access: Attribute.Integer;
+    url: Attribute.String;
+    icon: Attribute.String;
+    iconType: Attribute.String;
+    phone: Attribute.String;
+    qrEnabled: Attribute.Boolean;
+    hours: Attribute.String;
+    open247: Attribute.Boolean & Attribute.DefaultTo<false>;
+    comingSoon: Attribute.Boolean;
+    underRepair: Attribute.Boolean;
+    openingDate: Attribute.Date;
+    photos: Attribute.Relation<
+      'api::provider.provider',
+      'oneToMany',
+      'api::photo.photo'
+    >;
+    reviews: Attribute.Relation<
+      'api::provider.provider',
+      'oneToMany',
+      'api::review.review'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -867,6 +1011,103 @@ export interface ApiProviderProvider extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::provider.provider',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: 'reviews';
+  info: {
+    singularName: 'review';
+    pluralName: 'reviews';
+    displayName: 'Review';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    comment: Attribute.String;
+    consumer: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'api::consumer.consumer'
+    >;
+    rating: Attribute.Integer;
+    finished: Attribute.DateTime;
+    problemDescription: Attribute.String;
+    waiting: Attribute.Boolean;
+    volts: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiStationStation extends Schema.CollectionType {
+  collectionName: 'stations';
+  info: {
+    singularName: 'station';
+    pluralName: 'stations';
+    displayName: 'Station';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    latitude: Attribute.Float;
+    longitude: Attribute.Float;
+    name: Attribute.String;
+    costDescription: Attribute.String;
+    preChargeInstructions: Attribute.String;
+    model: Attribute.String;
+    outlets: Attribute.Relation<
+      'api::station.station',
+      'oneToMany',
+      'api::outlet.outlet'
+    >;
+    cost: Attribute.Decimal;
+    qrEnabled: Attribute.Boolean;
+    available: Attribute.Integer &
+      Attribute.SetMinMax<{
+        max: 20;
+      }>;
+    hours: Attribute.String;
+    network: Attribute.Relation<
+      'api::station.station',
+      'oneToOne',
+      'api::network.network'
+    >;
+    location: Attribute.Relation<
+      'api::station.station',
+      'oneToOne',
+      'api::provider.provider'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::station.station',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::station.station',
       'oneToOne',
       'admin::user'
     > &
@@ -929,10 +1170,15 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::connector.connector': ApiConnectorConnector;
       'api::consumer.consumer': ApiConsumerConsumer;
       'api::features-config.features-config': ApiFeaturesConfigFeaturesConfig;
-      'api::handshake.handshake': ApiHandshakeHandshake;
+      'api::network.network': ApiNetworkNetwork;
+      'api::outlet.outlet': ApiOutletOutlet;
+      'api::photo.photo': ApiPhotoPhoto;
       'api::provider.provider': ApiProviderProvider;
+      'api::review.review': ApiReviewReview;
+      'api::station.station': ApiStationStation;
       'api::subscription.subscription': ApiSubscriptionSubscription;
     }
   }

@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "outlets",
+  "info": {
+    "singularName": "outlet",
+    "pluralName": "outlets",
+    "displayName": "Outlet",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "available": {
+      "type": "boolean"
+    },
+    "power": {
+      "type": "decimal"
+    },
+    "connector": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::connector.connector"
+    },
+    "statusChangedAt": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "AVAILABLE",
+        "BLOCKED",
+        "CHARGING",
+        "CONNECTED",
+        "OUTOFORDER",
+        "UNDER_REPAIR",
+        "OFFLINE",
+        "PLANNED",
+        "REMOVED",
+        "RESERVED",
+        "UNKNOWN"
+      ]
+    },
+    "station": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::station.station"
+    }
+  }
+}

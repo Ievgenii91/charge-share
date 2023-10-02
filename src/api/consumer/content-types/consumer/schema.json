@@ -41,6 +41,21 @@
       "type": "integer",
       "min": 0,
       "max": 5
+    },
+    "phone": {
+      "type": "string"
+    },
+    "about": {
+      "type": "string"
+    },
+    "notifyNearbyRadius": {
+      "type": "integer"
+    },
+    "notifyNearby": {
+      "type": "integer"
+    },
+    "vehicleDescription": {
+      "type": "string"
     }
   }
 }

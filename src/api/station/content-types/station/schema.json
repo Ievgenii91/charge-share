@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stations",
+  "info": {
+    "singularName": "station",
+    "pluralName": "stations",
+    "displayName": "Station",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "latitude": {
+      "type": "float",
+      "required": false
+    },
+    "longitude": {
+      "type": "float",
+      "required": false
+    },
+    "name": {
+      "type": "string"
+    },
+    "costDescription": {
+      "type": "string"
+    },
+    "preChargeInstructions": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "outlets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::outlet.outlet"
+    },
+    "cost": {
+      "type": "decimal"
+    },
+    "qrEnabled": {
+      "type": "boolean"
+    },
+    "available": {
+      "type": "integer",
+      "max": 20
+    },
+    "hours": {
+      "type": "string"
+    },
+    "network": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::network.network"
+    },
+    "location": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::provider.provider"
+    }
+  }
+}

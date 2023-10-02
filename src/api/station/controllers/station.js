@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * handshake controller
+ * station controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::handshake.handshake');
+module.exports = createCoreController('api::station.station');

@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * handshake service
+ * station service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::handshake.handshake');
+module.exports = createCoreService('api::station.station');

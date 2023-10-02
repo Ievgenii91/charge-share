@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "photos",
+  "info": {
+    "singularName": "photo",
+    "pluralName": "photos",
+    "displayName": "photo"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "thumbnail": {
+      "type": "string"
+    },
+    "caption": {
+      "type": "string"
+    },
+    "thumbnail2x": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}
